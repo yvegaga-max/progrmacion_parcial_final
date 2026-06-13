@@ -13,21 +13,24 @@ public class inventario {
         Scanner sc = new Scanner(System.in);
         int opcion;
 
+      // Bucle principal del menú ¿para que? para que el usuario pueda elegir opciones hasta que decida salir
         do {
-            System.out.println("\n╔══════════════════════════════════════╗");
-            System.out.println("║     SISTEMA DE INVENTARIO            ║");
-            System.out.println("╠══════════════════════════════════════╣");
-            System.out.println("║  1. Agregar producto                 ║");
-            System.out.println("║  2. Ver productos                    ║");
-            System.out.println("║  3. Editar producto                  ║");
-            System.out.println("║  4. Eliminar producto                ║");
-            System.out.println("║  5. Registrar venta                  ║");
-            System.out.println("║  6. Ver historial de ventas          ║");
-            System.out.println("║  7. Estado del inventario            ║");
-            System.out.println("║  8. Ver tarifas                      ║");
-            System.out.println("║  9. Buscar producto                  ║");
-            System.out.println("║  0. Salir                            ║");
-            System.out.println("╚══════════════════════════════════════╝");
+           
+            System.out.println("     SISTEMA DE INVENTARIO            ");
+           
+
+            System.out.println("  1. Agregar producto                 ");
+            System.out.println("  2. Ver productos                    ");
+            System.out.println("  3. Editar producto                  ");
+            System.out.println("  4. Eliminar producto                ");
+            System.out.println("  5. Registrar venta                  ");
+            System.out.println("  6. Ver historial de ventas          ");
+            System.out.println("  7. Estado del inventario            ");
+            System.out.println("  8. Ver tarifas                      ");
+            System.out.println("  9. Buscar producto                  ");
+            System.out.println("  0. Salir                            ");
+      
+
             System.out.print("  Elige una opción: ");
 
             try { opcion = Integer.parseInt(sc.nextLine().trim()); }
@@ -43,16 +46,18 @@ public class inventario {
                 case 7: gestor.mostrarEstado(); break;
                 case 8: Tarifas.mostrarTarifas(); break;
                 case 9: buscarProducto(gestor, sc); break;
-                case 0: System.out.println("\n  ¡Hasta luego!\n"); break;
-                default: System.out.println("  Opción no válida, intenta de nuevo.");
+                case 0: System.out.println("\n  ¡chaito :D!\n"); break;
+                default: System.out.println("  Opción no válida, intenta de nuevo."); // Si el usuario ingresa una opción no válida, se muestra un mensaje de error y se vuelve a mostrar el menú
             }
 
         } while (opcion != 0);
+        // Fin del bucle principal del menú escogi esto ya que pues el usuario puede elegir opciones hasta que decida salir, si elige salir se sale del bucle y se cierra el programa
+// Cerrar el scanner al finalizar el programa
 
         sc.close();
     }
 
-    // ── Opción 1: Agregar ─────────────────────────────
+    // ----------- Opción 1: Agregar el producto  -----------------------------------------------
     private static void agregarProducto(GestorInventario gestor, Scanner sc) {
         System.out.println("\n── Agregar Producto ──");
         System.out.print("  Código:        "); String cod = sc.nextLine().trim();
@@ -70,7 +75,7 @@ public class inventario {
 
             double margen = Tarifas.calcularMargen(pC, pV);
             if (margen < Tarifas.MARGEN_MINIMO * 100)
-                System.out.printf("  ⚠  Margen bajo: %.1f%% (mínimo recomendado: 10%%)%n", margen);
+                System.out.printf(" Margen bajo: %.1f%% (mínimo recomendado: 10%%)%n", margen);//* para que es esto? para tener un minimo de ganacia establecido es decir que 10% */
 
             Producto p;
             if (tipo.equals("2"))      p = new ProductoDigital(cod, nom, pC, pV, cant);
@@ -78,22 +83,22 @@ public class inventario {
             else                       p = new ProductoFisico(cod, nom, pC, pV, cant);
 
             if (gestor.agregarProducto(p))
-                System.out.println("  ✔  Producto agregado correctamente.");
+                System.out.println("   Producto agregado correctamente al stock :D.");
             else
-                System.out.println("  ✘  Ya existe un producto con ese código.");
+                System.out.println("    Ya existe un producto con ese código :C.");
 
         } catch (NumberFormatException e) {
-            System.out.println("  ✘  Valor numérico inválido.");
+            System.out.println("    Valor numérico inválido puedes intentarlo de nuevo,tiene que ser numero!!.");
         }
     }
 
-    // ── Opción 3: Editar ──────────────────────────────
+    // ── Opción 3: Editar ──────────────────────────────--------------------------------------------
     private static void editarProducto(GestorInventario gestor, Scanner sc) {
         System.out.println("\n── Editar Producto ──");
         System.out.print("  Código del producto a editar: ");
         String cod = sc.nextLine().trim();
         Producto p = gestor.buscarPorCodigo(cod);
-        if (p == null) { System.out.println("  ✘  Producto no encontrado."); return; }
+        if (p == null) { System.out.println("   Producto no encontrado."); return; }
 
         System.out.println("  Producto actual: " + p);
         System.out.print("  Nuevo nombre (Enter para mantener): ");       String nom  = sc.nextLine().trim();
@@ -106,9 +111,9 @@ public class inventario {
             double pV   = sPV.isEmpty()   ? 0  : Double.parseDouble(sPV);
             int    cant = sCant.isEmpty()  ? -1 : Integer.parseInt(sCant);
             gestor.actualizarProducto(cod, nom, pC, pV, cant);
-            System.out.println("  ✔  Producto actualizado.");
+            System.out.println(" Producto actualizado.");
         } catch (NumberFormatException e) {
-            System.out.println("  ✘  Valor numérico inválido.");
+            System.out.println("    Valor numérico inválido.");
         }
     }
 
@@ -118,9 +123,9 @@ public class inventario {
         System.out.print("  Código del producto a eliminar: ");
         String cod = sc.nextLine().trim();
         if (gestor.eliminarProducto(cod))
-            System.out.println("  ✔  Producto eliminado.");
+            System.out.println("   Producto eliminado.");
         else
-            System.out.println("  ✘  Producto no encontrado.");
+            System.out.println("  Producto no encontrado.");
     }
 
     // ── Opción 5: Vender ──────────────────────────────
@@ -131,10 +136,10 @@ public class inventario {
         try {
             int cant = Integer.parseInt(sc.nextLine().trim());
             String res = gestor.registrarVenta(cod, cant);
-            if (res.equals("OK")) System.out.println("  ✔  Venta registrada correctamente.");
-            else                  System.out.println("  ✘  " + res);
+            if (res.equals("OK")) System.out.println("   Venta registrada correctamente.");
+            else                  System.out.println("  error  " + res);
         } catch (NumberFormatException e) {
-            System.out.println("  ✘  Cantidad inválida.");
+            System.out.println("Cantidad inválida.");
         }
     }
 
@@ -151,7 +156,7 @@ public class inventario {
                 encontrado = true;
             }
         }
-        if (!encontrado) System.out.println("  ✘  No se encontró ningún producto.");
+        if (!encontrado) System.out.println("No se encontró ningún producto.");
     }
 }
 
@@ -310,7 +315,7 @@ class GestorInventario {
 
     public boolean agregarProducto(Producto p) {
         if (productos.size() >= CAPACIDAD_MAXIMA) {
-            System.out.println("Error: se alcanzó la capacidad máxima del inventario (" + CAPACIDAD_MAXIMA + ").");
+            System.out.println("Error: cuidado se alcanzó la capacidad máxima del inventario (" + CAPACIDAD_MAXIMA + ").");
             return false;
         }
         if (buscarPorCodigo(p.getCodigo()) != null) return false;
@@ -391,18 +396,21 @@ class GestorInventario {
             System.out.println("No hay productos registrados.");
             return;
         }
-        System.out.println("\n── Productos en inventario ──────────────────────────────────────────");
+        System.out.println("\nProductos en inventario ");
+
         for (Producto p : productos) System.out.println("  " + p.toString());
-        System.out.println("─────────────────────────────────────────────────────────────────────");
+     
     }
 
     public void mostrarVentas() {
         if (ventas.isEmpty()) {
-            System.out.println("No hay ventas registradas.");
+
+            System.out.println("No hay ventas registradas por ahora ¡animo! .");
             return;
         }
-        System.out.println("\n── Historial de ventas ──────────────────────────────────────────────");
+        System.out.println("\n Historial de ventas ");
+
         for (Venta v : ventas) System.out.println("  " + v.toString());
-        System.out.println("─────────────────────────────────────────────────────────────────────");
+      
     }
 }

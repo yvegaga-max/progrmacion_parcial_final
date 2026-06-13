@@ -3,18 +3,33 @@
 
 ## 👥 Integrantes
 
-| Nombre | Rol |
-|--------|-----|
-| _(tu nombre)_ | _(tu rol)_ |
+| Nombre                            | Rol                                            |codigo
+|--------|--------------------------|------------------------------------------------|--------|
+| yeraldin vega garcia              | Desarrollador de Inventario e Interfaz Gráfica |192760
+|--------|------- ------------------|------------------------------------------------|--------|
+| ANDREA DEL PILAR RUEDAS RODRÍGUEZ | Analista y desarrolladora de Productos         |0192756
+|--------|------- ------------------|------------------------------------------------|--------|
+| miguel angel caro                 | Desarrollador de Ventas y Reportes             |0192766
+|--------|------- ------------------|------------------------------------------------|--------|
+| Jan Franco Quintero Parada        | Desarrollador de Tarifas e Interfaz de Usuario |0192772
+
 
 ---
 
+
+
 ## 📝 Descripción del Problema
 
-El Sistema de Inventario SAMADIGITAL surge ante la necesidad de modernizar y automatizar la gestión de productos y ventas de un negocio que manejaba su inventario de forma manual, lo que generaba errores en los precios, pérdida de información y dificultad para obtener reportes financieros.
+SAMA DIGITAL es un emprendimiento dedicado a la comercialización de productos y servicios tecnológicos. para  el crecimiento del negocio, el control de inventario y ventas se realiza de forma manual mediante anotaciones y registros básicos, lo que generaba dificultades para mantener un seguimiento preciso de los productos disponibles y de las ventas realizadas.
+
+Entre los principales problemas identificados se encontraban la posibilidad de registrar productos duplicados, errores en el cálculo de precios y ganancias, dificultades para conocer el stock disponible en tiempo real y la falta de reportes organizados que permitieran evaluar el estado financiero del negocio.
+
+Además, el emprendimiento maneja diferentes tipos de productos, como productos físicos, productos digitales y servicios, por lo que era necesario implementar una solución que permitiera administrar cada categoría de manera eficiente dentro de un mismo sistema.
+
+Ante esta situación surgió la necesidad de desarrollar el Sistema de Inventario SAMADIGITAL, una herramienta que permitiera automatizar la gestión de productos y ventas, mejorar el control del inventario, reducir errores operativos y facilitar la toma de decisiones mediante reportes financieros y estadísticas actualizadas.
 
 **Problemas identificados:**
-- Control manual propenso a errores humanos
+- Control manual propenso a muchos errores
 - Pérdida de información de productos y ventas
 - Dificultad para calcular márgenes de ganancia y tarifas con IVA
 - Falta de reportes financieros organizados
@@ -23,63 +38,73 @@ El Sistema de Inventario SAMADIGITAL surge ante la necesidad de modernizar y aut
 
 ## ✨ Solución Propuesta
 
-Se desarrolló un sistema integral con **dos interfaces**: consola interactiva y ventana gráfica con JavaFX, que permite:
+Con el fin de solucionar las necesidades identificadas en el emprendimiento SAMA DIGITAL, se desarrolló un sistema de inventario orientado a la gestión eficiente de productos, ventas y reportes financieros.
 
-- Registrar, editar y eliminar productos (físicos, digitales y servicios)
-- Registrar ventas con descuento automático de stock
-- Calcular márgenes de ganancia y precios con IVA
-- Controlar el stock disponible (máximo 1000 productos)
-- Generar reportes financieros detallados
-- Buscar productos por código o nombre
-- Evitar duplicados en el sistema
+El sistema fue implementado utilizando Java y cuenta con dos formas de interacción: una interfaz de consola para la gestión básica y una interfaz gráfica desarrollada con JavaFX para facilitar la experiencia del usuario.
+
+Entre las funcionalidades principales se encuentran:
+
+* Registro, edición y eliminación de productos.
+* Gestión de diferentes tipos de productos: físicos, digitales y servicios.
+* Registro de ventas con actualización automática del stock disponible.
+* Búsqueda rápida de productos por código o nombre.
+* Prevención de productos duplicados dentro del inventario.
+* Cálculo automático de márgenes de ganancia.
+* Aplicación y consulta de tarifas e IVA.
+* Generación de reportes financieros sobre ventas, inventario y ganancias.
+* Control de capacidad del inventario con un límite máximo de 1000 productos.
+* Historial de ventas con fecha y hora de cada transacción.
+
+Gracias a estas características, el sistema permite optimizar el control de inventario de SAMA DIGITAL, reducir errores operativos, mejorar la organización de la información y facilitar la toma de decisiones basada en datos financieros actualizados.
+
 
 ---
 
-## 🚀 Explicación de Clases y Métodos Principales
+| Clase              | ¿Para qué sirve?                                                   |
+| ------------------ | ------------------------------------------------------------------ |
+| `Producto`         | Es la clase principal de donde salen todos los tipos de productos. |
+| `ProductoFisico`   | Guarda la información de los productos físicos.                    |
+| `ProductoDigital`  | Guarda la información de los productos digitales.                  |
+| `ProductoServicio` | Guarda la información de los servicios.                            |
+| `Tarifas`          | Se encarga de calcular IVA, márgenes y precios.                    |
+| `Venta`            | Guarda los datos de cada venta realizada.                          |
+| `GestorInventario` | Maneja todo el inventario, productos y ventas.                     |
+| `inventario`       | Tiene el menú principal de la versión por consola.                 |
+| `InventarioApp`    | Tiene la interfaz gráfica hecha en JavaFX.                         |
 
-| Clase | Rol |
-|-------|-----|
-| `Producto` | Clase abstracta padre que representa un producto general |
-| `ProductoFisico` | Clase hija que representa un producto físico |
-| `ProductoDigital` | Clase hija que representa un producto digital |
-| `ProductoServicio` | Clase hija que representa un servicio |
-| `Tarifas` | Gestiona precios, IVA y cálculos de márgenes |
-| `Venta` | Almacena información de cada transacción realizada |
-| `GestorInventario` | Clase principal que gestiona todas las operaciones |
-| `inventario` | Contiene el método `main` de la interfaz consola |
-| `InventarioApp` | Contiene el método `main` de la interfaz gráfica JavaFX |
 
 ---
 
 ### 📦 Clase Producto (Abstracta)
 
 **Propósito:** Clase padre que define la estructura básica de cualquier producto.
+¿Para qué sirve?
+Es la clase principal de los productos. Contiene la información básica que todos los productos necesitan tener.
 
-**Atributos:**
-- `codigo`: código único del producto (String)
-- `nombre`: nombre del producto (String)
-- `precioCompra`: precio de compra (double)
-- `precioVenta`: precio de venta (double)
-- `cantidad`: stock disponible (int)
+Atributos principales:
 
-**Métodos:**
-- `getTipo()`: método abstracto que cada subclase implementa
-- `calcularGanancia()`: retorna la ganancia total del producto en stock
-- `toString()`: representación en cadena del producto
+codigo: identifica el producto.
+nombre: nombre del producto.
+precioCompra: precio al que se compra el producto.
+precioVenta: precio al que se vende.
+cantidad: cantidad disponible en inventario.
 
+Métodos principales:
+
+getTipo(): permite saber qué tipo de producto es.
+calcularGanancia(): calcula la ganancia del producto según sus precios.
+toString(): muestra la información del producto de forma organizada.
 ---
 
 ### 🗂️ Clases Hijas: ProductoFisico, ProductoDigital, ProductoServicio
 
-**Propósito:** Representan tipos específicos de productos que extienden de `Producto`.
+Estas clases se usan para diferenciar los tipos de productos que maneja el inventario.
 
-**Características:**
-- **Herencia:** Todas extienden de la clase `Producto`
-- **Constructores:** Cada una inicializa su tipo específico usando `super()`
-- Ejemplos:
-  - `ProductoFisico(...)` → `getTipo()` retorna `"Físico"`
-  - `ProductoDigital(...)` → `getTipo()` retorna `"Digital"`
-  - `ProductoServicio(...)` → `getTipo()` retorna `"Servicio"`
+ProductoFisico: productos físicos.
+ProductoDigital: productos digitales.
+ProductoServicio: servicios.
+
+Las tres heredan de la clase Producto, por lo que comparten la misma información básica (código, nombre, precios y cantidad), pero cada una indica su tipo mediante el método getTipo().
 
 ---
 
@@ -128,48 +153,70 @@ Se desarrolló un sistema integral con **dos interfaces**: consola interactiva y
 
 **Métodos principales:**
 
-| Método | Función |
-|--------|---------|
-| `agregarProducto(p)` | Valida duplicados y agrega producto al inventario |
-| `buscarPorCodigo(codigo)` | Localiza un producto por su código |
-| `eliminarProducto(codigo)` | Elimina un producto del inventario |
-| `actualizarProducto(...)` | Actualiza los datos de un producto existente |
-| `registrarVenta(codigo, cantidad)` | Valida stock, descuenta y registra la venta |
-| `calcularCapitalInvertido()` | Suma precio compra × cantidad de todos los productos |
-| `calcularValorInventario()` | Suma precio venta × cantidad de todos los productos |
-| `calcularTotalVentas()` | Suma el total de todas las ventas realizadas |
-| `calcularGananciaNeta()` | Suma la ganancia neta de todas las ventas |
+| Método                             |  Función                                            |
+|------------------------------------|---------------------------------------------------- |
+| `agregarProducto(p)`               | Valida duplicados y agrega producto al inventario   |
+| `buscarPorCodigo(codigo)`          | Localiza un producto por su código                  |
+| `eliminarProducto(codigo)`         | Elimina un producto del inventario                  |
+| `actualizarProducto(...)`          | Actualiza los datos de un producto existente        |
+| `registrarVenta(codigo, cantidad)` | Valida stock, descuenta y registra la venta         |
+| `calcularCapitalInvertido()`       | Suma precio compra × cantidad de todos los productos|
+| `calcularValorInventario()`        | Suma precio venta × cantidad de todos los productos |
+| `calcularTotalVentas()`            | Suma el total de todas las ventas realizadas        |
+| `calcularGananciaNeta()`           | Suma la ganancia neta de todas las ventas           |
 
 ---
 
 ## 🎯 Conceptos de Programación Implementados
 
+bueno para empezar en primer lugar los conceptos de programacion implementados los añadi por si acaso en fin continuando con esto  se aplicaron conceptos como herencia, encapsulamiento, polimorfismo, manejo de excepciones y estructuras de datos. Estos conceptos permitieron organizar mejor el código, reutilizar funcionalidades y garantizar un mejor control de la información almacenada en el inventario. 
+
 ### 🔄 Herencia
-- Clase abstracta `Producto` como padre
-- Clases `ProductoFisico`, `ProductoDigital`, `ProductoServicio` como hijas
-- Uso de `super()` en constructores
+
+Para no repetir el mismo código varias veces, se creó una clase principal llamada Producto, donde se guardan las características que tienen todos los productos, como el código, nombre, precios y cantidad.
+
+Después se crearon las clases ProductoFisico, ProductoDigital y ProductoServicio, que heredan todo lo de la clase Producto.
+
+Gracias a esto fue más fácil organizar los diferentes tipos de productos sin escribir lo mismo una y otra vez.
 
 ### 🔒 Encapsulamiento
-- Atributos `protected` y `private`
-- Métodos getter/setter para acceso controlado
-- Validaciones en métodos públicos
+
+Los datos de los productos y las ventas están protegidos para evitar que se modifiquen de forma incorrecta.
+
+Por eso se utilizaron atributos privados o protegidos y métodos getter y setter para acceder a la información cuando sea necesario.
+
+Esto ayuda a mantener un mejor control sobre los datos del sistema.
 
 ### 🔄 Polimorfismo
-- Manejo de diferentes tipos de productos como `Producto`
-- Método `getTipo()` sobrescrito en cada subclase
-- Método `toString()` sobrescrito
+
+Aunque existen diferentes tipos de productos, todos pueden ser manejados como objetos de tipo Producto.
+
+Por ejemplo, en la lista del inventario se pueden guardar productos físicos, digitales o servicios sin necesidad de crear una lista diferente para cada uno.
+
+Esto hace que el código sea más flexible y fácil de administrar.
 
 ### 📊 Estructuras de Datos
-- `ArrayList<Producto>` para productos activos
-- `ArrayList<Venta>` para historial de ventas
-- Uso de `LocalDateTime` para fechas de transacciones
-- `ObservableList` de JavaFX para la tabla de la interfaz gráfica
+
+Para almacenar la información se utilizaron listas dinámicas (ArrayList).
+
+Una lista guarda todos los productos registrados y otra almacena las ventas realizadas.
+
+También se utilizó LocalDateTime para registrar la fecha y la hora de cada venta.
+
+Estas estructuras permiten organizar mejor la información y acceder a ella fácilmente cuando el usuario la necesita.
 
 ### ⚠️ Manejo de Excepciones
-- `try-catch` para entrada de datos en consola
-- `NumberFormatException` para validar números
-- Validaciones de campos vacíos y stock insuficiente
 
+Se implementaron validaciones para evitar errores cuando el usuario ingresa datos incorrectos.
+
+Por ejemplo, si se escribe texto donde debería ir un número, el sistema muestra un mensaje de error en lugar de cerrarse.
+
+También se validan situaciones como:
+
+Registrar cantidades inválidas.
+Intentar vender más productos de los disponibles.
+Agregar productos con códigos repetidos.
+Buscar productos que no existen.
 ---
 
 ## 💻 Instrucciones para Ejecutar el Código
@@ -194,36 +241,40 @@ No requiere instalar JavaFX. Simplemente:
 ---
 
 ### 🎨 Opción 2 — Interfaz Gráfica JavaFX
+solo porque me da miedo de que no funcione o se me olvide algo dejare esto aqui para saber como hacer que funcione en 
+otro computador que no se si vaya a funcionar diferentes metodos 
 
 #### Paso 1 — Descargar JavaFX
 
-1. Ve a: [https://gluonhq.com/products/javafx/](https://gluonhq.com/products/javafx/)
-2. Descarga **JavaFX 21 LTS** → **Windows x64** → tipo **SDK**
-3. Extrae el zip en: `C:\javafx-sdk-21.0.11`
+### Método A: Ejecución en Entorno de Desarrollo (Código Fuente)
+Ideal para revisar la lógica de programación, las clases y la herencia implementada.
 
-La estructura debe quedar así:
-```
-C:\javafx-sdk-21.0.11\
-├── bin\
-├── lib\
-│   ├── javafx.controls.jar
-│   ├── javafx.fxml.jar
-│   └── ...
-└── ...
-```
+primero clonar 
 
-#### Paso 2 — Ejecutar en VS Code
+Abrir el proyecto: Inicie Visual Studio Code y abra la carpeta raíz del proyecto clonado.
 
-1. Abre el proyecto en VS Code
-2. Ve al panel **Run and Debug** (`Ctrl+Shift+D`)
-3. Selecciona `Interfaz - InventarioApp` en el desplegable
-4. Presiona ▶️
+Ejecutar la aplicación: * En la barra lateral izquierda (Explorador), navegue a la carpeta src/inventario/.
 
-> ⚠️ Si JavaFX está instalado en una ruta diferente, edita el archivo `.vscode/launch.json` y cambia `C:\\javafx-sdk-21.0.11\\lib` por tu ruta.
+Abra el archivo Launcher.java.
 
----
+Presione la tecla F5 o haga clic en el botón Run (Play) ubicado en la esquina superior derecha.
 
-## 🎮 Manual de Usuario
+Nota: La presencia de la carpeta .vscode y lib configurará automáticamente los módulos de JavaFX sin requerir pasos adicionales.
+ 
+ ### Método B: Ejecución Directa (Producción)
+
+Ideal para evaluar el comportamiento de la interfaz gráfica y los flujos de trabajo sin necesidad de abrir un editor de código.
+
+Abra la terminal de comandos (CMD, PowerShell o Terminal de Mac) directamente en la carpeta donde se encuentra el proyecto.
+
+Ejecute el archivo empaquetado utilizando la Máquina Virtual de Java con el siguiente comando:
+
+Bash
+java -jar progrmacion_parcial_final.jar
+
+El sistema desplegará de forma inmediata la ventana principal de la interfaz gráfica.
+
+
 
 ### Consola — Menú Principal
 
@@ -240,16 +291,6 @@ C:\javafx-sdk-21.0.11\
 0. Salir
 ```
 
-### Interfaz Gráfica — Botones
-
-| Botón | Función |
-|-------|---------|
-| ➕ Agregar | Registra un nuevo producto |
-| ✏️ Editar | Modifica un producto seleccionado |
-| 🗑 Eliminar | Elimina el producto seleccionado |
-| 💰 Vender | Registra una venta y descuenta stock |
-| 🔍 Buscar | Localiza producto por código o nombre |
-| 📋 Tarifas | Muestra tabla de IVA y márgenes |
 
 ### Características del Sistema
 
@@ -263,15 +304,6 @@ C:\javafx-sdk-21.0.11\
 
 ---
 
-## 📂 Estructura del Proyecto
+## 🔄 Diagrama de Flujo SDLC
 
-```
-progrmacion_parcial_final\
-├── .vscode\
-│   └── launch.json        ← configuración de ejecución
-├── src\
-│   └── inventario\
-│       ├── inventario.java      ← clases base + interfaz consola
-│       └── InventarioApp.java   ← interfaz gráfica JavaFX
-└── README.md
-```
+![Diagrama SDLC](diagrama-sdlc.png)
