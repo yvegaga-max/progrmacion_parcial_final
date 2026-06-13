@@ -2,16 +2,14 @@
 # 📦 Sistema de Inventario SAMADIGITAL
 
 ## 👥 Integrantes
+## 👥 Integrantes
 
-| Nombre                            | Rol                                            |codigo
-|--------|--------------------------|------------------------------------------------|--------|
-| yeraldin vega garcia              | Desarrollador de Inventario e Interfaz Gráfica |192760
-|--------|------- ------------------|------------------------------------------------|--------|
-| ANDREA DEL PILAR RUEDAS RODRÍGUEZ | Analista y desarrolladora de Productos         |0192756
-|--------|------- ------------------|------------------------------------------------|--------|
-| miguel angel caro                 | Desarrollador de Ventas y Reportes             |0192766
-|--------|------- ------------------|------------------------------------------------|--------|
-| Jan Franco Quintero Parada        | Desarrollador de Tarifas e Interfaz de Usuario |0192772
+| Nombre | Rol | Código |
+|---------|---------|---------|
+| Yeraldin Vega García | Desarrollador de Inventario e Interfaz Gráfica | 0192760 |
+| Andrea del Pilar Ruedas Rodríguez | Analista y desarrolladora de Productos | 0192756 |
+| Miguel Ángel Caro | Desarrollador de Ventas y Reportes | 0192766 |
+| Jan Franco Quintero Parada | Desarrollador de Tarifas e Interfaz de Usuario | 0192772 |
 
 
 ---
